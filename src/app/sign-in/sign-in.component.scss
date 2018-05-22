@@ -1,0 +1,19 @@
+main {
+  background: url("../../assets/background-main.jpg") no-repeat center center;
+  background-size: cover;
+  height: calc(100vh - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form {
+  margin: 20px auto;
+  max-width: 400px;
+  border-radius: 10px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}

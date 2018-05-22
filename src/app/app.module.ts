@@ -11,15 +11,19 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+
 
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { RegisterComponent } from './register/register.component';
-import { AboutComponent } from './about/about.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
+import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +31,8 @@ import { PersonalProfileComponent } from './personal-profile/personal-profile.co
     HomeComponent,
     ContactsComponent,
     RegisterComponent,
-    AboutComponent,
     SignInComponent,
-    PersonalProfileComponent
+    MatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +45,14 @@ import { PersonalProfileComponent } from './personal-profile/personal-profile.co
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
+  entryComponents: [MatDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

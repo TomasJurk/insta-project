@@ -1,0 +1,83 @@
+<mat-card *ngIf="data.formType == 'influencer'">
+  <h2>Enter information</h2>
+  <form class="form" [formGroup]="userForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="First name" formControlName="name" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.name }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Second name" formControlName="secondName" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.secondName">
+        {{ formErrors.secondName }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Instagram nickname" formControlName="instagramNick" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.instagramNick">
+        {{ formErrors.instagramNick }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Youtube nickname">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Groups" [formControl]="groups" multiple>
+        <mat-option *ngFor="let group of groupList" [value]="group">{{group}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-button>Click me!</button>
+  </form>
+</mat-card>
+
+<mat-card *ngIf="data.formType == 'brand'">
+  <h2>Enter information</h2>
+  <form class="form" [formGroup]="userForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Brand name" formControlName="name" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.name }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Phone number" type="number" formControlName="phone" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.phone }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" formControlName="email" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.email }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="City" formControlName="city" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.city">
+        {{ formErrors.city }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Marketing type" formControlName="marketingType" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.marketingType">
+        {{ formErrors.marketingType }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Budget" formControlName="budget" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.budget">
+        {{ formErrors.budget }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <div class="sm-text is-danger" *ngIf="formErrors.date">
+        {{ formErrors.date }}
+      </div>
+    </mat-form-field>
+    <button type="submit" mat-button>Click me!</button>
+  </form>
+</mat-card>
