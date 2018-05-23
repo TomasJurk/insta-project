@@ -71,9 +71,9 @@
       </div>
     </mat-form-field>
     <mat-form-field class="full-width">
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" required>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker touchUi="true" #picker></mat-datepicker>
       <div class="sm-text is-danger" *ngIf="formErrors.date">
         {{ formErrors.date }}
       </div>

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import * as Parse from 'parse';
+
 // Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -55,4 +57,13 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
   entryComponents: [MatDialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+
+  constructor() {
+    Parse.initialize('myAppId');
+    Parse.serverURL = 'http://localhost:4201/parse/';
+  }
+
+}
+

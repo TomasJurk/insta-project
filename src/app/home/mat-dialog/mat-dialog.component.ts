@@ -119,9 +119,9 @@ export class MatDialogComponent implements OnInit {
         ]],
       }
     );
-    this.userForm.valueChanges.subscribe(
+    /* this.userForm.valueChanges.subscribe(
       data => this.onValueChanged(data)
-    );
+    ); */
     this.onValueChanged();
   }
 
