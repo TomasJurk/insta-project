@@ -3,9 +3,9 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import {FormControl} from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-type UserFields = 'name' | 'secondName' | 'instagramNick' |
-'email' | 'phone' | 'city' | 'budget' | 'marketingType' | 'date';
-type FormErrors = { [u in UserFields]: string };
+// KAM REIKALINGI ??
+/* type UserFields = 'name' | 'secondName' | 'instagramNick' | 'email' | 'phone' | 'city' | 'budget' | 'marketingType' | 'date'; */
+/* type FormErrors = { [u in UserFields]: string }; */
 
 @Component({
   selector: 'app-mat-dialog',
@@ -14,8 +14,16 @@ type FormErrors = { [u in UserFields]: string };
 })
 export class MatDialogComponent implements OnInit {
 
+  influencer = {
+    name: '',
+    secondName: '',
+    instagramNick: '',
+    youtubeNick: '',
+    cattegory: '',
+  };
+
   userForm: FormGroup;
-  formErrors: FormErrors = {
+  formErrors = {
     'name': '',
     'secondName': '',
     'instagramNick': '',
@@ -26,7 +34,7 @@ export class MatDialogComponent implements OnInit {
     'marketingType': '',
     'date': '',
   };
-  validationMessage = {
+  private validationMessage = {
     'name': {
       'required': 'Name is required',
       'minlength': 'Name must be at least 2 char long.'
@@ -119,9 +127,9 @@ export class MatDialogComponent implements OnInit {
         ]],
       }
     );
-    /* this.userForm.valueChanges.subscribe(
+    this.userForm.valueChanges.subscribe(
       data => this.onValueChanged(data)
-    ); */
+    );
     this.onValueChanged();
   }
 
@@ -146,6 +154,14 @@ export class MatDialogComponent implements OnInit {
         }
       }
     }
+  }
+
+  testFoo() {
+    this.influencer.name = this.userForm.value['name'];
+    this.influencer.secondName = this.userForm.value['secondName'];
+    this.influencer.instagramNick = this.userForm.value['instagramNick'];
+    this.influencer.cattegory = this.groups.value;
+    console.log(this.userForm.value);
   }
 
 }
