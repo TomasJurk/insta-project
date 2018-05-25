@@ -14,20 +14,38 @@
       </div>
     </mat-form-field>
     <mat-form-field class="full-width">
+      <input matInput placeholder="Email" formControlName="email" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.email }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Phone number" type="number" formControlName="phone" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.name">
+        {{ formErrors.phone }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="City" formControlName="city" required>
+      <div class="sm-text is-danger" *ngIf="formErrors.city">
+        {{ formErrors.city }}
+      </div>
+    </mat-form-field>
+    <mat-form-field class="full-width">
       <input matInput placeholder="Instagram nickname" formControlName="instagramNick" required>
       <div class="sm-text is-danger" *ngIf="formErrors.instagramNick">
         {{ formErrors.instagramNick }}
       </div>
     </mat-form-field>
     <mat-form-field class="full-width">
-      <input matInput placeholder="Youtube nickname">
+      <input matInput placeholder="Youtube nickname" formControlName="youtubeNick" >
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-select placeholder="Groups" [formControl]="groups" multiple>
         <mat-option *ngFor="let group of groupList" [value]="group">{{group}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button type="submit"  mat-button>Click me!</button>
+    <button type="submit" [disabled]="!userForm.valid"  mat-button>Click me!</button>
   </form>
 </mat-card>
 
@@ -78,6 +96,6 @@
         {{ formErrors.date }}
       </div>
     </mat-form-field>
-    <button type="submit" mat-button>Click me!</button>
+    <button type="submit" [disabled]="!userForm.valid" mat-button>Click me!</button>
   </form>
 </mat-card>

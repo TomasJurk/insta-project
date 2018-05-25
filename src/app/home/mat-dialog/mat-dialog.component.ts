@@ -3,9 +3,9 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import {FormControl} from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-// KAM REIKALINGI ??
-/* type UserFields = 'name' | 'secondName' | 'instagramNick' | 'email' | 'phone' | 'city' | 'budget' | 'marketingType' | 'date'; */
-/* type FormErrors = { [u in UserFields]: string }; */
+type UserFields = 'name' | 'secondName' | 'instagramNick' | 'youtubeNick'
+| 'email' | 'phone' | 'city' | 'budget' | 'marketingType' | 'date';
+type FormErrors = { [u in UserFields]: string };
 
 @Component({
   selector: 'app-mat-dialog',
@@ -23,10 +23,11 @@ export class MatDialogComponent implements OnInit {
   };
 
   userForm: FormGroup;
-  formErrors = {
+  formErrors: FormErrors = {
     'name': '',
     'secondName': '',
     'instagramNick': '',
+    'youtubeNick': '',
     'email': '',
     'phone': '',
     'city': '',
@@ -81,10 +82,14 @@ export class MatDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.buildForm();
+    if (this.data.formType === 'influencer') {
+      this.buildFormInfluencer();
+    } else {
+      this.buildFormBrand();
+    }
   }
 
-  buildForm() {
+  buildFormInfluencer() {
     this.userForm = this.formBuilder.group(
       {
         'name': ['', [
@@ -99,6 +104,7 @@ export class MatDialogComponent implements OnInit {
           Validators.required,
           Validators.minLength(3)
         ]],
+        'youtubeNick': '',
         'email': ['', [
           Validators.required,
           Validators.email
@@ -111,7 +117,30 @@ export class MatDialogComponent implements OnInit {
           Validators.required,
           Validators.minLength(2)
         ]],
-        'brandName': ['', [
+      }
+    );
+    this.userForm.valueChanges.subscribe(
+      data => this.onValueChanged(data)
+    );
+    this.onValueChanged();
+  }
+
+  buildFormBrand() {
+    this.userForm = this.formBuilder.group(
+      {
+        'name': ['', [
+          Validators.required,
+          Validators.minLength(2)
+        ]],
+        'email': ['', [
+          Validators.required,
+          Validators.email
+        ]],
+        'phone': ['', [
+          Validators.required,
+          Validators.minLength(8) // padaryti validacija type='number' neveikia minLength
+        ]],
+        'city': ['', [
           Validators.required,
           Validators.minLength(2)
         ]],
@@ -132,6 +161,7 @@ export class MatDialogComponent implements OnInit {
     );
     this.onValueChanged();
   }
+
 
   onValueChanged(data?: any) {
     if (!this.userForm) { return; }
@@ -157,9 +187,6 @@ export class MatDialogComponent implements OnInit {
   }
 
   testFoo() {
-    this.influencer.name = this.userForm.value['name'];
-    this.influencer.secondName = this.userForm.value['secondName'];
-    this.influencer.instagramNick = this.userForm.value['instagramNick'];
     this.influencer.cattegory = this.groups.value;
     console.log(this.userForm.value);
   }
