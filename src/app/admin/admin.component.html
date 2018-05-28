@@ -1,0 +1,17 @@
+<mat-drawer-container class="admin-container">
+  <mat-drawer mode="side" opened="true">
+    <nav class="admin-nav">
+      <ul>
+        <li><a routerLink="registrations">Registrations</a></li>
+        <li><a routerLink="influencers">Influencers</a></li>
+        <li><a routerLink="brands">Brands</a></li>
+      </ul>
+      <button (click)="signOut()" mat-button>
+        <i class="material-icons">exit_to_app</i>
+      </button>
+    </nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

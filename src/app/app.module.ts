@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AdminModule } from './admin/admin.module';
+
 import * as Parse from 'parse';
 
 // Material
@@ -17,7 +19,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
+// Service
+import { AuthService } from './core/auth.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -39,6 +44,7 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AdminModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,9 +57,10 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule
   ],
-  providers: [],
+  providers: [AuthService],
   entryComponents: [MatDialogComponent],
   bootstrap: [AppComponent]
 })
