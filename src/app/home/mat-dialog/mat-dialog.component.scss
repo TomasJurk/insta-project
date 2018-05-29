@@ -1,13 +1,24 @@
-.form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+
+mat-card {
+  font-size: calc(0.4vw + 12px);
+  max-height: 90vh;
+  overflow: auto;
+  h2 {
+    font-size: 1.4rem;
+  }
+  .form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+    max-height: 9vh;
+  }
+
+  button:focus {
+    outline: 0;
+  }
 }
 
-.full-width {
-  width: 100%;
-}
-
-button:focus {
-  outline: 0;
-}

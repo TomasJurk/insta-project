@@ -21,15 +21,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
-// Service
-import { AuthService } from './core/auth.service';
 
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { RegisterComponent } from './register/register.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
 
 @NgModule({
@@ -37,8 +33,6 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
     AppComponent,
     HomeComponent,
     ContactsComponent,
-    RegisterComponent,
-    SignInComponent,
     MatDialogComponent
   ],
   imports: [
@@ -60,7 +54,7 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
     MatNativeDateModule,
     MatSidenavModule
   ],
-  providers: [AuthService],
+  providers: [],
   entryComponents: [MatDialogComponent],
   bootstrap: [AppComponent]
 })

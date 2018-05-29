@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as Parse from 'parse';
 
 type UserFields = 'name' | 'secondName' | 'instagramNick' | 'youtubeNick'
 | 'email' | 'phone' | 'city' | 'budget' | 'marketingType' | 'date';
@@ -13,14 +14,6 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./mat-dialog.component.scss']
 })
 export class MatDialogComponent implements OnInit {
-
-  influencer = {
-    name: '',
-    secondName: '',
-    instagramNick: '',
-    youtubeNick: '',
-    cattegory: '',
-  };
 
   userForm: FormGroup;
   formErrors: FormErrors = {
@@ -186,9 +179,53 @@ export class MatDialogComponent implements OnInit {
     }
   }
 
-  testFoo() {
-    this.influencer.cattegory = this.groups.value;
-    console.log(this.userForm.value);
+  saveInfuelcer() {
+    const Influencers4201 = Parse.Object.extend('Influencers4201');
+    const influencer = new Influencers4201();
+
+    influencer.set('name', this.userForm.value['name']);
+    influencer.set('secondName', this.userForm.value['secondName']);
+    influencer.set('email', this.userForm.value['email']);
+    influencer.set('phoneNumber', this.userForm.value['phone']);
+    influencer.set('city', this.userForm.value['city']);
+    influencer.set('instagramNick', this.userForm.value['instagramNick']);
+    influencer.set('youtubeNick', this.userForm.value['youtubeNick']);
+    influencer.set('groups', this.groups.value);
+
+    influencer.save(null, {
+      success: function(abc) {
+        console.log('New influencer data saved');
+      },
+      error: function(abc, error) {
+        // Execute any logic that should take place if the save fails.
+        // error is a Parse.Error with an error code and message.
+        console.log('Failed to create new object, with error code: ' + error.message);
+      }
+    });
+  }
+
+  saveBrand() {
+    const Brands4201 = Parse.Object.extend('Brands4201');
+    const brand = new Brands4201();
+
+    brand.set('name', this.userForm.value['name']);
+    brand.set('phoneNumber', this.userForm.value['phone']);
+    brand.set('email', this.userForm.value['email']);
+    brand.set('city', this.userForm.value['city']);
+    brand.set('marketingType', this.userForm.value['marketingType']);
+    brand.set('budget', this.userForm.value['budget']);
+    brand.set('date', this.userForm.value['date']);
+
+    brand.save(null, {
+      success: function(abc) {
+        console.log('New brand data saved');
+      },
+      error: function(abc, error) {
+        // Execute any logic that should take place if the save fails.
+        // error is a Parse.Error with an error code and message.
+        console.log('Failed to create new object, with error code: ' + error.message);
+      }
+    });
   }
 
 }

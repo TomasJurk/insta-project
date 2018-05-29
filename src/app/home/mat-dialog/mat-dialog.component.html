@@ -1,6 +1,6 @@
 <mat-card *ngIf="data.formType == 'influencer'">
   <h2>Enter information</h2>
-  <form class="form" (ngSubmit)="testFoo()" [formGroup]="userForm">
+  <form class="form" (ngSubmit)="saveInfuelcer()" [formGroup]="userForm">
     <mat-form-field class="full-width">
       <input matInput placeholder="First name" formControlName="name" required>
       <div class="sm-text is-danger" *ngIf="formErrors.name">
@@ -51,7 +51,7 @@
 
 <mat-card *ngIf="data.formType == 'brand'">
   <h2>Enter information</h2>
-  <form class="form" [formGroup]="userForm">
+  <form class="form" (ngSubmit)="saveBrand()" [formGroup]="userForm">
     <mat-form-field class="full-width">
       <input matInput placeholder="Brand name" formControlName="name" required>
       <div class="sm-text is-danger" *ngIf="formErrors.name">

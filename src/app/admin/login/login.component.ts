@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/auth.service';
+import * as Parse from 'parse';
 
 type UserFields = 'email' | 'password';
 type FormErrors = { [u in UserFields]: string };
@@ -13,6 +13,8 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  errorMsg: string;
 
   userForm: FormGroup;
   formErrors: FormErrors = {
@@ -32,8 +34,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private _auth: AuthService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -82,7 +83,14 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    console.log('Sign in !');
+    Parse.User.logIn(this.userForm.value['email'], this.userForm.value['password'], {
+     success: (user) => {
+      this.router.navigate(['/admin/registrations']);
+     },
+     error: (user, error) => {
+       this.errorMsg = error.message;
+     }
+   });
   }
 
 }
