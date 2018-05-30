@@ -1,3 +1,22 @@
-<p>
-  influencers works!
-</p>
+<mat-card class="list_card" *ngFor="let influencer of influencers">
+  <mat-card-title>{{influencer.name}} {{influencer.secondName}}</mat-card-title>
+  <mat-card-content>
+    <div><b>Phone number: </b>{{influencer.phoneNumber}}</div>
+    <div><b>Email: </b>{{influencer.email}}</div>
+    <div><b>City: </b>{{influencer.city}}</div>
+    <div><b>Instagram: </b>{{influencer.instagramNick}}</div>
+    <div><b>Youtube: </b>{{influencer.youtubeNick}}</div>
+    <div>
+        <b>Groups of interests: </b><span *ngFor="let group of influencer.groups">{{group}} </span>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+
+
+<button (click)="getInfluencers()">GET</button>
