@@ -12,9 +12,8 @@ export class InfluencersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getInfluencers();
   }
-
-    // http://docs.parseplatform.org/js/guide/#queries
 
   getInfluencers() {
     this.influencers = [];
@@ -26,7 +25,6 @@ export class InfluencersComponent implements OnInit {
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
           this.influencers.push(object.attributes);
-          console.log(this.influencers);
         }
       },
       error: (error) => {

@@ -1,3 +1,29 @@
-<p>
-  registrations works!
-</p>
+<h2>Influencers</h2>
+<mat-card class="list_card" *ngFor="let influencer of influencers">
+  <button class="list_item" (click)="openDialog()" mat-button>
+    <span>
+      <b>{{influencer.name}} {{influencer.secondName}}</b>
+    </span>
+    <span>
+      {{influencer.phoneNumber}}
+    </span>
+    <span>
+      {{influencer.email}}
+    </span>
+  </button>
+</mat-card>
+
+<h2>Brands</h2>
+<mat-card class="list_card" *ngFor="let brand of brands">
+  <button class="list_item" (click)="openDialog()" mat-button>
+    <span>
+      <b>{{brand.name}}</b>
+    </span>
+    <span>
+      {{brand.phoneNumber}}
+    </span>
+    <span>
+      {{brand.email}}
+    </span>
+  </button>
+</mat-card>

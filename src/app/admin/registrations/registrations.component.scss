@@ -1,0 +1,15 @@
+h2 {
+  text-align: center;
+}
+
+.list_card {
+  padding: 0;
+}
+.list_item {
+  display: flex;
+  width: 100%;
+}
+
+button:focus {
+  outline: 0;
+}

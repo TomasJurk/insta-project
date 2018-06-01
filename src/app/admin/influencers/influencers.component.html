@@ -7,16 +7,9 @@
     <div><b>Instagram: </b>{{influencer.instagramNick}}</div>
     <div><b>Youtube: </b>{{influencer.youtubeNick}}</div>
     <div>
-        <b>Groups of interests: </b><span *ngFor="let group of influencer.groups">{{group}} </span>
+      <b>Groups of interests: </b><span *ngFor="let group of influencer.groups">{{group}} </span>
     </div>
   </mat-card-content>
+  <button mat-button>Aprove</button>
+  <button mat-button>Delete</button>
 </mat-card>
-
-
-
-
-
-
-
-
-<button (click)="getInfluencers()">GET</button>

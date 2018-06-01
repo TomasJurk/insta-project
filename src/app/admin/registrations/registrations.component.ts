@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import * as Parse from 'parse';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-registrations',
@@ -7,28 +9,82 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationsComponent implements OnInit {
 
-  constructor() { }
+  influencers = [];
+  brands = [];
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
+    this.getInfluencers();
+    this.getBrands();
   }
 
-  // http://docs.parseplatform.org/js/guide/#queries
-
-  /* var GameScore = Parse.Object.extend("GameScore");
-  var query = new Parse.Query(GameScore);
-  query.equalTo("playerName", "Dan Stemkoski");
-  query.find({
-    success: function(results) {
-      alert("Successfully retrieved " + results.length + " scores.");
-      // Do something with the returned Parse.Object values
-      for (var i = 0; i < results.length; i++) {
-        var object = results[i];
-        alert(object.id + ' - ' + object.get('playerName'));
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RegistrationsModalComponent, {
+      width: '250px',
+      data: {
+        infuencerID: ''
       }
-    },
-    error: function(error) {
-      alert("Error: " + error.code + " " + error.message);
-    }
-  }); */
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+  getInfluencers() {
+    this.influencers = [];
+    const Influencers4201 = Parse.Object.extend('Influencers4201');
+    const query = new Parse.Query(Influencers4201);
+    query.find({
+      success: (results) => {
+        console.log('Successfully retrieved ' + results.length);
+        for (let i = 0; i < results.length; i++) {
+          const object = results[i];
+          this.influencers.push(object.attributes);
+          console.log(object);
+        }
+      },
+      error: (error) => {
+        alert('Error: ' + error.code + ' ' + error.message);
+      }
+    });
+  }
+
+  getBrands() {
+    this.brands = [];
+    const Brands4201 = Parse.Object.extend('Brands4201');
+    const query = new Parse.Query(Brands4201);
+    query.find({
+      success: (results) => {
+        console.log('Successfully retrieved ' + results.length);
+        for (let i = 0; i < results.length; i++) {
+          const object = results[i];
+          this.brands.push(object.attributes);
+        }
+      },
+      error: (error) => {
+        alert('Error: ' + error.code + ' ' + error.message);
+      }
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-registrations-modal',
+  templateUrl: 'registrations.modal.html',
+})
+export class RegistrationsModalComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<RegistrationsModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

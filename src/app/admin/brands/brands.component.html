@@ -1,3 +1,13 @@
-<p>
-  brands works!
-</p>
+<mat-card class="list_card" *ngFor="let brand of brands">
+  <mat-card-title>{{brand.name}}</mat-card-title>
+  <mat-card-content>
+    <div><b>Phone number: </b>{{brand.phoneNumber}}</div>
+    <div><b>Email: </b>{{brand.email}}</div>
+    <div><b>City: </b>{{brand.city}}</div>
+    <div><b>Marketing type: </b>{{brand.marketingType}}</div>
+    <div><b>Budget: </b>{{brand.budget}}</div>
+    <div><b>Date: </b>{{brand.date}}</div>
+  </mat-card-content>
+  <button mat-button>Aprove</button>
+  <button mat-button>Delete</button>
+</mat-card>

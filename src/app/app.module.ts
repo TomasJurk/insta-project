@@ -55,7 +55,7 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
     MatSidenavModule
   ],
   providers: [],
-  entryComponents: [MatDialogComponent],
+  entryComponents: [MatDialogComponent], 
   bootstrap: [AppComponent]
 })
 
