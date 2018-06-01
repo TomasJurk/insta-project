@@ -1,29 +1,31 @@
 <h2>Influencers</h2>
 <mat-card class="list_card" *ngFor="let influencer of influencers">
-  <button class="list_item" (click)="openDialog()" mat-button>
+  <button class="list_item" (click)="openDialog(influencer)" mat-button>
     <span>
-      <b>{{influencer.name}} {{influencer.secondName}}</b>
+      <b>{{influencer.attributes.name}} {{influencer.attributes.secondName}}</b>
     </span>
     <span>
-      {{influencer.phoneNumber}}
+      {{influencer.attributes.phoneNumber}}
     </span>
     <span>
-      {{influencer.email}}
+      {{influencer.attributes.email}}
     </span>
+    {{influencer.id}}
   </button>
 </mat-card>
 
 <h2>Brands</h2>
 <mat-card class="list_card" *ngFor="let brand of brands">
-  <button class="list_item" (click)="openDialog()" mat-button>
+  <button class="list_item" (click)="openDialog(brand)" mat-button>
     <span>
-      <b>{{brand.name}}</b>
+      <b>{{brand.attributes.name}}</b>
     </span>
     <span>
-      {{brand.phoneNumber}}
+      {{brand.attributes.phoneNumber}}
     </span>
     <span>
-      {{brand.email}}
+      {{brand.attributes.email}}
     </span>
+    {{brand.id}}
   </button>
 </mat-card>

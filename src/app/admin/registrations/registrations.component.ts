@@ -20,11 +20,21 @@ export class RegistrationsComponent implements OnInit {
     this.getBrands();
   }
 
-  openDialog(): void {
+  openDialog(info): void {
     const dialogRef = this.dialog.open(RegistrationsModalComponent, {
-      width: '250px',
       data: {
-        infuencerID: ''
+        className: info.className,
+        id: info.id,
+        name: info.attributes.name,
+        phone: info.attributes.phoneNumber,
+        email: info.attributes.email,
+        city: info.attributes.city,
+        instagramNick: info.attributes.instagramNick,
+        youtubeNick: info.attributes.youtubeNick,
+        groupsOfInterests: info.attributes.groups,
+        marketingType: info.attributes.marketingType,
+        budget: info.attributes.budget,
+        date: info.attributes.date.getTime().getHours() // check how is better to get
       }
     });
 
@@ -43,7 +53,7 @@ export class RegistrationsComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.influencers.push(object.attributes);
+          this.influencers.push(object);
           console.log(object);
         }
       },
@@ -62,7 +72,7 @@ export class RegistrationsComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.brands.push(object.attributes);
+          this.brands.push(object);
         }
       },
       error: (error) => {

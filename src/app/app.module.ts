@@ -21,7 +21,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
-
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -55,7 +54,7 @@ import { MatDialogComponent } from './home/mat-dialog/mat-dialog.component';
     MatSidenavModule
   ],
   providers: [],
-  entryComponents: [MatDialogComponent], 
+  entryComponents: [MatDialogComponent],
   bootstrap: [AppComponent]
 })
 
