@@ -10,7 +10,6 @@
     <span>
       {{influencer.attributes.email}}
     </span>
-    {{influencer.id}}
   </button>
 </mat-card>
 
@@ -26,6 +25,23 @@
     <span>
       {{brand.attributes.email}}
     </span>
-    {{brand.id}}
   </button>
 </mat-card>
+
+<h2>Checked users</h2>
+<mat-card class="list_card" *ngFor="let seenUser of seenUsers">
+  <button class="list_item" (click)="openDialog(seenUser)" mat-button>
+    <span>
+      <b>{{seenUser.attributes.name}}</b>
+    </span>
+    <span>
+      {{seenUser.attributes.phoneNumber}}
+    </span>
+    <span>
+      {{seenUser.attributes.email}}
+    </span>
+    <span *ngIf="seenUser.attributes.approved">Patvirtintas</span>
+    <span *ngIf="!seenUser.attributes.approved && seenUser.attributes.seen">Peržiūrėtas</span>
+  </button>
+</mat-card>
+

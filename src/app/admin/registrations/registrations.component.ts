@@ -11,6 +11,9 @@ export class RegistrationsComponent implements OnInit {
 
   influencers = [];
   brands = [];
+
+  seenUsers = [];
+
   constructor(
     public dialog: MatDialog
   ) { }
@@ -34,7 +37,7 @@ export class RegistrationsComponent implements OnInit {
         groupsOfInterests: info.attributes.groups,
         marketingType: info.attributes.marketingType,
         budget: info.attributes.budget,
-        date: info.attributes.date.getTime().getHours() // check how is better to get
+        date: info.attributes.date
       }
     });
 
@@ -53,8 +56,11 @@ export class RegistrationsComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.influencers.push(object);
-          console.log(object);
+          if (object.attributes.seen === false) {
+            this.influencers.push(object);
+          } else {
+            this.seenUsers.push(object);
+          }
         }
       },
       error: (error) => {
@@ -72,7 +78,11 @@ export class RegistrationsComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.brands.push(object);
+          if (object.attributes.seen === false) {
+            this.brands.push(object);
+          } else {
+            this.seenUsers.push(object);
+          }
         }
       },
       error: (error) => {
@@ -97,4 +107,11 @@ export class RegistrationsModalComponent {
     this.dialogRef.close();
   }
 
+  checkApproved() {
+    console.log(this.data);
+  }
+
+  checkSeen() {
+    console.log(this.data);
+  }
 }
