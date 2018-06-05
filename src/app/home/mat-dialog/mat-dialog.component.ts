@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import * as Parse from 'parse';
 
 type UserFields = 'name' | 'secondName' | 'instagramNick' | 'youtubeNick'
@@ -70,6 +70,7 @@ export class MatDialogComponent implements OnInit {
   groupList = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   constructor(
+    public dialogRef: MatDialogRef<MatDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
   ) { }
@@ -155,7 +156,6 @@ export class MatDialogComponent implements OnInit {
     this.onValueChanged();
   }
 
-
   onValueChanged(data?: any) {
     if (!this.userForm) { return; }
 
@@ -193,10 +193,11 @@ export class MatDialogComponent implements OnInit {
     influencer.set('groups', this.groups.value);
 
     influencer.save(null, {
-      success: function(abc) {
+      success: () => {
         console.log('New influencer data saved');
+        this.dialogRef.close();
       },
-      error: function(abc, error) {
+      error: (error) => {
         // Execute any logic that should take place if the save fails.
         // error is a Parse.Error with an error code and message.
         console.log('Failed to create new object, with error code: ' + error.message);
@@ -217,10 +218,11 @@ export class MatDialogComponent implements OnInit {
     brand.set('date', this.userForm.value['date']);
 
     brand.save(null, {
-      success: function(abc) {
+      success: () => {
         console.log('New brand data saved');
+        this.dialogRef.close();
       },
-      error: function(abc, error) {
+      error: (error) => {
         // Execute any logic that should take place if the save fails.
         // error is a Parse.Error with an error code and message.
         console.log('Failed to create new object, with error code: ' + error.message);

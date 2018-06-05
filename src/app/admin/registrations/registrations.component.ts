@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import * as Parse from 'parse';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrations',
@@ -25,35 +26,23 @@ export class RegistrationsComponent implements OnInit {
 
   openDialog(info): void {
     const dialogRef = this.dialog.open(RegistrationsModalComponent, {
-      data: {
-        className: info.className,
-        id: info.id,
-        name: info.attributes.name,
-        phone: info.attributes.phoneNumber,
-        email: info.attributes.email,
-        city: info.attributes.city,
-        instagramNick: info.attributes.instagramNick,
-        youtubeNick: info.attributes.youtubeNick,
-        groupsOfInterests: info.attributes.groups,
-        marketingType: info.attributes.marketingType,
-        budget: info.attributes.budget,
-        date: info.attributes.date
-      }
+      data: info
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.getInfluencers();
+      this.getBrands();
     });
   }
 
 
   getInfluencers() {
+    this.seenUsers = [];
     this.influencers = [];
     const Influencers4201 = Parse.Object.extend('Influencers4201');
     const query = new Parse.Query(Influencers4201);
     query.find({
       success: (results) => {
-        console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
           if (object.attributes.seen === false) {
@@ -70,12 +59,12 @@ export class RegistrationsComponent implements OnInit {
   }
 
   getBrands() {
+    this.seenUsers = [];
     this.brands = [];
     const Brands4201 = Parse.Object.extend('Brands4201');
     const query = new Parse.Query(Brands4201);
     query.find({
       success: (results) => {
-        console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
           if (object.attributes.seen === false) {
@@ -96,22 +85,49 @@ export class RegistrationsComponent implements OnInit {
 @Component({
   selector: 'app-registrations-modal',
   templateUrl: 'registrations.modal.html',
+  styleUrls: ['./registrations.component.scss']
 })
 export class RegistrationsModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<RegistrationsModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  checkApproved() {
-    console.log(this.data);
+  checkSeen() {
+    this.data.set('seen', true);
+    this.data.save({
+      success: () => {
+        this.dialogRef.close();
+      }
+    });
   }
 
-  checkSeen() {
-    console.log(this.data);
+  checkApproved(id) {
+    this.data.set('approved', true);
+    this.data.set('seen', true);
+    this.data.save({
+      success: () => {
+        this.router.navigate(['admin/new-user', id]);
+        this.dialogRef.close();
+      }
+    });
+  }
+
+  testUncheck() {
+    this.data.set('seen', false);
+    this.data.set('approved', false);
+    this.data.save({
+      success: () => {
+        this.dialogRef.close();
+      }
+    });
   }
 }
+
+

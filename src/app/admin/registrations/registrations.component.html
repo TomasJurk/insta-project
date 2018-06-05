@@ -31,6 +31,9 @@
 <h2>Checked users</h2>
 <mat-card class="list_card" *ngFor="let seenUser of seenUsers">
   <button class="list_item" (click)="openDialog(seenUser)" mat-button>
+    <h4>
+      {{seenUser.className}}
+    </h4>
     <span>
       <b>{{seenUser.attributes.name}}</b>
     </span>
@@ -41,7 +44,7 @@
       {{seenUser.attributes.email}}
     </span>
     <span *ngIf="seenUser.attributes.approved">Patvirtintas</span>
-    <span *ngIf="!seenUser.attributes.approved && seenUser.attributes.seen">Peržiūrėtas</span>
+    <span *ngIf="!seenUser.attributes.approved && seenUser.attributes.seen">Peržiūrėtas ir nepatvirtintas</span>
   </button>
 </mat-card>
 

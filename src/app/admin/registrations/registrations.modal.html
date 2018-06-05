@@ -1,6 +1,7 @@
-<p>{{data.date}}</p>
-<p>{{data.name}}</p>
-<p>{{data.phone}}</p>
-<p>{{data.email}}</p>
-<button (click)="checkApproved()" mat-button>APPROVE</button>
+<p>{{data.attributes.date}}</p>
+<p>{{data.attributes.name}}</p>
+<p>{{data.attributes.phoneNumber}}</p>
+<p>{{data.attributes.email}}</p>
+<button (click)="checkApproved(data.id)"  mat-button>APPROVE</button>
 <button (click)="checkSeen()" mat-button>NO</button>
+<button (click)="testUncheck()" mat-button>TEST UNCHECK</button>

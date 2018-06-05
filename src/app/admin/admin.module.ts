@@ -17,6 +17,7 @@ import { BrandsComponent } from './brands/brands.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationsModalComponent } from './registrations/registrations.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +38,16 @@ const appRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [{path: 'influencers', component: InfluencersComponent}]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [{path: 'new-user', component: NewUserComponent}]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [{path: 'new-user/:id', component: NewUserComponent}]
   },
 ];
 
@@ -59,7 +70,8 @@ const appRoutes: Routes = [
     BrandsComponent,
     RegistrationsComponent,
     LoginComponent,
-    RegistrationsModalComponent
+    RegistrationsModalComponent,
+    NewUserComponent
   ],
   entryComponents: [RegistrationsModalComponent]
 })

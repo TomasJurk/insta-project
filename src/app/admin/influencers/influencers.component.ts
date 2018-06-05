@@ -24,7 +24,9 @@ export class InfluencersComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.influencers.push(object.attributes);
+          if (object.attributes.approved === true) {
+            this.influencers.push(object.attributes);
+          }
         }
       },
       error: (error) => {

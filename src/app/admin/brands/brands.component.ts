@@ -24,7 +24,9 @@ export class BrandsComponent implements OnInit {
         console.log('Successfully retrieved ' + results.length);
         for (let i = 0; i < results.length; i++) {
           const object = results[i];
-          this.brands.push(object.attributes);
+          if (object.attributes.approved === true) {
+            this.brands.push(object.attributes);
+          }
         }
       },
       error: (error) => {
