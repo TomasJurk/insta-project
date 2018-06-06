@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import * as Parse from 'parse';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-registrations',
@@ -92,7 +93,8 @@ export class RegistrationsModalComponent {
   constructor(
     public dialogRef: MatDialogRef<RegistrationsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
+    private router: Router,
+    private _uS: UserService
   ) { }
 
   onNoClick(): void {
@@ -108,11 +110,12 @@ export class RegistrationsModalComponent {
     });
   }
 
-  checkApproved(id) {
+  checkApproved(id, className) {
     this.data.set('approved', true);
     this.data.set('seen', true);
     this.data.save({
       success: () => {
+        this._uS.getUser(id, className);
         this.router.navigate(['admin/new-user', id]);
         this.dialogRef.close();
       }

@@ -1,3 +1,30 @@
-<p>
-  new-user works!
-</p>
+<mat-card > <!-- *ngIf="data.formType == 'influencer'" -->
+    <h2>Enter information</h2>
+    <form class="form" (ngSubmit)="confirmInfuelcer()">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="First name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Second name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Phone number" type="number">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="City">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Instagram nickname">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Youtube nickname">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Groups">
+      </mat-form-field>
+      <button type="submit" mat-button>Confirm</button>
+    </form>
+  </mat-card>

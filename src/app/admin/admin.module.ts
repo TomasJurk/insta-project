@@ -10,6 +10,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 
+// Service
+import { UserService } from './user.service';
+
 // Components
 import { AdminComponent } from './admin.component';
 import { InfluencersComponent } from './influencers/influencers.component';
@@ -73,6 +76,8 @@ const appRoutes: Routes = [
     RegistrationsModalComponent,
     NewUserComponent
   ],
-  entryComponents: [RegistrationsModalComponent]
+  providers: [UserService],
+  entryComponents: [RegistrationsModalComponent],
+
 })
 export class AdminModule { }
