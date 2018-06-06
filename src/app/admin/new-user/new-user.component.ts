@@ -11,6 +11,7 @@ import * as Parse from 'parse';
 export class NewUserComponent implements OnInit, OnDestroy {
 
   id: string;
+  className: string;
   currentUser: any;
   private sub: any;
 
@@ -22,6 +23,7 @@ export class NewUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.className = this._uS.className;
       if (this._uS.className && this.id) {
         this.getUserObject();
       }

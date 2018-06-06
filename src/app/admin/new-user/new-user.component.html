@@ -1,8 +1,8 @@
-<mat-card > <!-- *ngIf="data.formType == 'influencer'" -->
+<mat-card *ngIf="className == 'Influencers4201'">
     <h2>Enter information</h2>
-    <form class="form" (ngSubmit)="confirmInfuelcer()">
+    <div class="form">
       <mat-form-field class="full-width">
-        <input matInput placeholder="First name">
+        <input [(ngModel)]="currentUser.attributes.name" matInput placeholder="First name">
       </mat-form-field>
       <mat-form-field class="full-width">
         <input matInput placeholder="Second name">
@@ -25,6 +25,6 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Groups">
       </mat-form-field>
-      <button type="submit" mat-button>Confirm</button>
-    </form>
+      <button type="submit" (click)="confirmInfuelcer()" mat-button>Confirm</button>
+    </div>
   </mat-card>
