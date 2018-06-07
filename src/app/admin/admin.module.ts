@@ -9,6 +9,8 @@ import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
 
 // Service
 import { UserService } from './user.service';
@@ -65,7 +67,9 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatSelectModule
   ],
   declarations: [
     AdminComponent,

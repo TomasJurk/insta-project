@@ -132,7 +132,7 @@ export class MatDialogComponent implements OnInit {
         ]],
         'phone': ['', [
           Validators.required,
-          Validators.minLength(8) // padaryti validacija type='number' neveikia minLength
+          Validators.minLength(8)
         ]],
         'city': ['', [
           Validators.required,

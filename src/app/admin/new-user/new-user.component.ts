@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
+import { FormControl } from '@angular/forms';
 import * as Parse from 'parse';
 import { promise } from 'protractor';
 
@@ -26,6 +27,11 @@ export class NewUserComponent implements OnInit, OnDestroy {
   className: string;
   currentUser: any;
 
+  groups = new FormControl();
+
+  groupList = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
   private sub: any;
 
   constructor(
@@ -43,13 +49,33 @@ export class NewUserComponent implements OnInit, OnDestroy {
         this.isNew = false;
       }
     });
-    this.buildForm();
+    this.buildFormInfl();
   }
 
-  buildForm() {
+  buildFormInfl() {
     this.userForm = this.formBuilder.group(
       {
-        'name': ['']
+        'name': [''],
+        'secondName': [''],
+        'instagramNick': [''],
+        'youtubeNick': '',
+        'email': [''],
+        'phone': [''],
+        'city': [''],
+      }
+    );
+  }
+
+  buildFormBrand() {
+    this.userForm = this.formBuilder.group(
+      {
+        'name': [''],
+        'phone': [''],
+        'email': [''],
+        'city': [''],
+        'marketingType': '',
+        'budget': [''],
+        'date': ['']
       }
     );
   }
@@ -72,8 +98,10 @@ export class NewUserComponent implements OnInit, OnDestroy {
   switchUserType() {
     if (this.newUserType === 'brand') {
       this.newUserType = 'influencer';
+      this.buildFormInfl();
     } else {
       this.newUserType = 'brand';
+      this.buildFormBrand();
     }
   }
 
