@@ -1,30 +1,97 @@
-<mat-card *ngIf="className == 'Influencers4201'">
+<div *ngIf="dataLoaded | async">
+  <mat-card *ngIf="className == 'Influencers4201'">
     <h2>Enter information</h2>
     <div class="form">
       <mat-form-field class="full-width">
         <input [(ngModel)]="currentUser.attributes.name" matInput placeholder="First name">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Second name">
+        <input [(ngModel)]="currentUser.attributes.secondName" matInput placeholder="Second name">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Email">
+        <input [(ngModel)]="currentUser.attributes.email" matInput placeholder="Email">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Phone number" type="number">
+        <input [(ngModel)]="currentUser.attributes.phoneNumber" matInput placeholder="Phone number" type="number">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="City">
+        <input [(ngModel)]="currentUser.attributes.city" matInput placeholder="City">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Instagram nickname">
+        <input [(ngModel)]="currentUser.attributes.instagramNick" matInput placeholder="Instagram nickname">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Youtube nickname">
+        <input [(ngModel)]="currentUser.attributes.youtubeNick" matInput placeholder="Youtube nickname">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Groups">
+        <input [(ngModel)]="currentUser.attributes.groups" matInput placeholder="Groups">
       </mat-form-field>
       <button type="submit" (click)="confirmInfuelcer()" mat-button>Confirm</button>
     </div>
   </mat-card>
+
+  <mat-card *ngIf="className == 'Brands4201'">
+    <h2>Enter information</h2>
+    <div class="form">
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.name" matInput placeholder="Brand name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.email" matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.phoneNumber" matInput placeholder="Phone number" type="number">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.city" matInput placeholder="City">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.marketingType" matInput placeholder="Marketing type">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.budget" matInput placeholder="Budget">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input  [(ngModel)]="currentUser.attributes.date" matInput placeholder="Date">
+      </mat-form-field>
+      <button type="submit" (click)="confirmBrand()" mat-button>Confirm</button>
+    </div>
+  </mat-card>
+</div>
+
+<div *ngIf="isNew">
+  <button (click)="switchUserType()">INFL/BRND</button>
+
+  <mat-card *ngIf="newUserType == 'influencer'">
+    <h2>Enter information</h2>
+    <form class="form" (ngSubmit)="confirmInfuelcer()" [formGroup]="userForm">
+      <mat-form-field class="full-width">
+        <input formControlName="name" matInput placeholder="First name">
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.secondName" matInput placeholder="Second name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.email" matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.phoneNumber" matInput placeholder="Phone number" type="number">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.city" matInput placeholder="City">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.instagramNick" matInput placeholder="Instagram nickname">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.youtubeNick" matInput placeholder="Youtube nickname">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input [(ngModel)]="currentUser.attributes.groups" matInput placeholder="Groups">
+      </mat-form-field> -->
+      <button type="submit" mat-button>Confirm</button>
+    </form>
+  </mat-card>
+
+  <h1 *ngIf="newUserType == 'brand'">Brnd</h1>
+</div>
