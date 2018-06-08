@@ -47,9 +47,10 @@ export class NewUserComponent implements OnInit, OnDestroy {
       if (this._uS.className && this.id) {
         this.getUserObject();
         this.isNew = false;
+      } else {
+        this.buildFormInfl();
       }
     });
-    this.buildFormInfl();
   }
 
   buildFormInfl() {
@@ -87,7 +88,6 @@ export class NewUserComponent implements OnInit, OnDestroy {
       success: (data) => {
         this.currentUser = data;
         this.dataLoaded = Promise.resolve(true);
-        console.log(this.currentUser);
       },
       error: (data, error) => {
         console.log(error.message);
@@ -107,7 +107,19 @@ export class NewUserComponent implements OnInit, OnDestroy {
 
   confirmInfuelcer() {
     if (this.id) {
+      console.log(this.currentUser);
+
+
+      this.currentUser.save({
+        success: (data) => {
+         // console.log('Success ' + data);
+        },
+        error: (data, error) => {
+        //  console.log(error.message);
+        }
+      });
       console.log('Pakeistas senas');
+      // console.log(this.currentUser);
     } else {
       console.log('Issaugotas naujas');
       console.log(this.userForm.value);
@@ -116,9 +128,9 @@ export class NewUserComponent implements OnInit, OnDestroy {
 
   confirmBrand() {
     if (this.id) {
-      console.log('Pakeistas senas');
+      // same as influencer confirm function
     } else {
-      console.log('Issaugotas naujas');
+      // same as influencer confirm function
     }
   }
 
