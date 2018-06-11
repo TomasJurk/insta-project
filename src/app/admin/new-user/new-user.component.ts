@@ -107,7 +107,7 @@ export class NewUserComponent implements OnInit, OnDestroy {
 
   confirmInfuelcer() {
     if (this.id) {
-      console.log(this.currentUser);
+      console.log(this.currentUser.attributes.name);
 
 
       this.currentUser.save({
